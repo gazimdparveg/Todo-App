@@ -15,7 +15,11 @@ const {Schema}= mongoose;
     number:{
         type   : String,
         require: true
-    }
+    },
+    update:{
+      type   : String,
+      default:0
+  }
   })  
 
  

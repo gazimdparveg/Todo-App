@@ -1,6 +1,6 @@
 import React  from 'react'
 
-const Show = ({name,email,phone, Delete})=> {
+const Show = ({name,email,phone, Delete,edittodo})=> {
  
 
   return (
@@ -12,7 +12,7 @@ const Show = ({name,email,phone, Delete})=> {
               <td className='w-1/4 p-2 border-r-2 border-yellow-600 '>{name} </td>
               <td className='w-1/4  p-2 border-r-2 border-yellow-600 '>{email} </td>
               <td className='w-1/4  p-2 border-r-2 border-yellow-600 '>{phone} </td>
-              <td className='w-1/4  p-2   '> <span > Edit</span> || <span className=' cursor-pointer' onClick={Delete}> Delete</span> </td>
+              <td className='w-1/4  p-2   '> <span className=' cursor-pointer'  onClick={edittodo}> Edit</span> || <span className=' cursor-pointer' onClick={Delete}> Delete</span> </td>
             </tr>
             
             </tbody> 

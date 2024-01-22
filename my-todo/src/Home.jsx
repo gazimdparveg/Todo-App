@@ -1,4 +1,4 @@
-import React, {   useState } from 'react'
+import React, {    useState } from 'react'
 import { ToastContainer, toast } from 'react-toastify';
 
 import axios from 'axios';  
@@ -10,9 +10,13 @@ function Home() {
   const [names , setName] = useState("");
   const [email, setEmail] = useState("");
   const [number, setNumber] = useState("");
+  const [nid, setid] = useState("");
   
   const [refrish , setrea] = useState(false);
  
+ 
+ 
+   
 
   const usename = (e)=>{
     setName(e.target.value);
@@ -52,10 +56,10 @@ function Home() {
     }
     
   };
-
+ 
 
   return (
- 
+   
      
       <div className='w-full flex-1 flex flex-col   h-auto  bg-gray-600'>
       
@@ -75,9 +79,8 @@ function Home() {
 
             <label className='text-white mr-2' htmlFor="phone">Phone: </label>
             <input onChange={usenumber} value={number} className=' w-full pl-2 h-10  flex-col   border-red-400 rounded-md flex' type="text" id='phone' placeholder='Enter Your phone' />
-
-
-            <button type="button" onClick={save} className="m-5 h-10 w-20 font-semibold rounded-full  bg-gray-100 dark:text-gray-800">Save</button>
+ 
+            <button type="button" onClick={save} className="m-5 h-10 w-20 font-semibold rounded-full  bg-gray-100 dark:text-gray-800">{nid? "Update" :"Save"}</button>
 
           </form>
 
@@ -103,7 +106,7 @@ theme="light"
         </div>
 
        
-        <Table {...{refrish , setrea}} />
+        <Table {...{refrish , setrea, setEmail,setNumber , setName,setid}} />
 
         
       </div>

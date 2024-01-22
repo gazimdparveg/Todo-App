@@ -13,28 +13,40 @@ app.post('/post', function(req,res){
         name:req.body.names,
         email:req.body.email,
         number:req.body.number
+         
     }
     const productName = new post(postinfo);
     productName.save();
     res.send('Post is successfully add');
     
-    console.log(productName);
+    
 })
 app.get('/post', async(req,res)=>{
   let date = await post.find({});
   res.send(date)
-  console.log(date);
-})
+   
+})  
 
 app.delete('/delete/:id', async(req,res)=>{
    const {id} = req.params;
    post.findByIdAndDelete({_id:id})
    .then(date => {
     res.json(date) 
+    
   
   })
    
 })
+
+app.put('/update/:id', async (req,res)=>{
+  const {id} =  await req.params;
+  post.findByIdAndUpdate({_id:id}) 
+  .then(date => {
+    res.json(date) 
+   })
+     
+})
+  
 
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://127.0.0.1:27017/mytodo')

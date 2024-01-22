@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import Show from './Show';
 import axios from 'axios';  
-import { ToastContainer, toast } from 'react-toastify';
+import {  toast } from 'react-toastify';
 
-function Table({refrish , setrea}) {
+function Table({refrish , setrea, setEmail,setNumber , setName ,setid}) {
 
   
-  const [post , setpost] = useState(); 
+  const [post , setpost] = useState();  
+  
 
   useEffect(() => {
     axios.get('http://localhost:8000/post')
@@ -14,7 +15,13 @@ function Table({refrish , setrea}) {
    
     }, [refrish]);
  
+ 
 
+
+
+    
+      
+  
   const deletes = async (id)=>{
     let date = await axios.delete('http://localhost:8000/delete/'+id); 
     if(date){
@@ -23,10 +30,23 @@ function Table({refrish , setrea}) {
       toast.success("Post Is Delete");
       
     }
+   
   }
 
+ 
 
-   
+  const edittodos =  (id,name,email,number)=>{ 
+    
+   setEmail(email)
+   setName(name)
+   setNumber(number)
+   setid(id);
+ 
+    
+      
+  } 
+ 
+
 
   return (
     <div>
@@ -40,12 +60,12 @@ function Table({refrish , setrea}) {
             <th className='w-1/4  '>Action</th>
           </tr>
           </thead>
-          
+        
 
 {  
         post?.map((date)=>{
-          
-          return   <Show key={date._id}  name={date.name} email={date.email} phone={date.number} Delete={()=>deletes(date._id)} />
+         
+          return   <Show key={date._id}    name={date.name} email={date.email} phone={date.number} Delete={()=>deletes(date._id)}  edittodo={()=>edittodos(date._id,date.name,date.email,date.number)}  />
         }) 
       }
          
