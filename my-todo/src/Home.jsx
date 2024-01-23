@@ -28,8 +28,8 @@ function Home() {
     setNumber(e.target.value);
   }
 
-  const save =  async (e)=>{
-    e.preventDefault();
+  const save =  async ()=>{
+    
 
     if(names === ""){
     toast.error("Name Is Require !");
@@ -56,8 +56,35 @@ function Home() {
     }
     
   };
- 
+ const Update = async (nid)=>{
+  
 
+    if(names === ""){
+    toast.error("Name Is Require !");
+    }else if(email === ""){
+      toast.error("Email Id Is Require !");
+    }else if(number === ""){
+      toast.error("Phone Number Is Require !");
+    }else{
+
+      let date = await axios.put('http://localhost:8000/update/'+nid,{
+        names:names,
+        email:email,
+        number:number,
+      }); 
+      if(date){
+        setrea(!refrish);
+        console.log(date);
+        toast.success("Post Is Update");
+        setName("");
+        setEmail('');
+        setNumber('');
+        setid("");
+      }
+     
+    }
+    
+  };
   return (
    
      
@@ -80,7 +107,7 @@ function Home() {
             <label className='text-white mr-2' htmlFor="phone">Phone: </label>
             <input onChange={usenumber} value={number} className=' w-full pl-2 h-10  flex-col   border-red-400 rounded-md flex' type="text" id='phone' placeholder='Enter Your phone' />
  
-            <button type="button" onClick={save} className="m-5 h-10 w-20 font-semibold rounded-full  bg-gray-100 dark:text-gray-800">{nid? "Update" :"Save"}</button>
+            <button type="button" onClick={nid? ()=> Update(nid) : ()=> save()} className="m-5 h-10 w-20 font-semibold rounded-full  bg-gray-100 dark:text-gray-800">{nid? "Update" :"Save"}</button>
 
           </form>
 
@@ -97,7 +124,7 @@ pauseOnHover
 theme="light"
 />
  
-<ToastContainer />
+ 
 
 
 

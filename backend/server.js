@@ -29,6 +29,7 @@ app.get('/post', async(req,res)=>{
 
 app.delete('/delete/:id', async(req,res)=>{
    const {id} = req.params;
+  
    post.findByIdAndDelete({_id:id})
    .then(date => {
     res.json(date) 
@@ -38,13 +39,21 @@ app.delete('/delete/:id', async(req,res)=>{
    
 })
 
-app.put('/update/:id', async (req,res)=>{
-  const {id} =  await req.params;
-  post.findByIdAndUpdate({_id:id}) 
+app?.put('/update/:nid', async (req,res)=>{
+  const {nid} =  await req.params;
+ 
+ const po = {
+        name:req.body.names,
+        email:req.body.email,
+        number:req.body.number
+ }
+
+ const posts = post.findByIdAndUpdate({_id:nid},{name:po.name,email:po.email,number:po.number}) 
   .then(date => {
     res.json(date) 
    })
-     
+   
+    
 })
   
 
